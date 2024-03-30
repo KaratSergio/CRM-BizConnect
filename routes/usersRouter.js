@@ -1,8 +1,11 @@
 import express from "express";
+import { userSignupController } from "../controllers/usersControllers.js";
+import { signupSchema } from "../schemas/usersSchemas.js";
+import validateBody from "../helpers/validateBody.js";
 
 const usersRouter = express.Router();
 
-usersRouter.post("/signup");
+usersRouter.post("/signup", validateBody(signupSchema), userSignupController);
 
 usersRouter.post("/login");
 
