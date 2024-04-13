@@ -2,9 +2,11 @@ import User from "../db/models/User.js";
 
 import jwt from "jsonwebtoken";
 
+import "dotenv/config";
+
 export const isUserExist = (email) => User.findOne({ email });
 
-const updateUserWithToken = async (id) => {
+export const updateUserWithToken = async (id) => {
   const { SECRET_KEY } = process.env;
 
   const token = jwt.sign({ id }, SECRET_KEY);
