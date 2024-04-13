@@ -26,3 +26,13 @@ export const createUser = async (userData) => {
 
   return newUser;
 };
+
+export const userById = async (id) => {
+  const findUser = await User.findById(id);
+  return findUser;
+};
+
+export const logOutUser = async (id) => {
+  await User.findByIdAndUpdate(id, { token: "" });
+};
+

@@ -3,6 +3,7 @@ import {
   isUserExist,
   createUser,
   updateUserWithToken,
+  logOutUser
 } from "../services/usersServices.js";
 
 export const userSignupController = async (req, res, next) => {
@@ -49,3 +50,23 @@ export const userLoginController = async (req, res, next) => {
     next(error);
   }
 };
+
+export const logoutUser = async (req, res, next) => {
+  const {_id} = req.user
+
+  try {
+    await logOutUser(_id)
+
+    res.sendStatus(204)
+
+  } catch (error) {
+    next(error)
+  }
+}
+
+export const currentUser = (req, res) => {
+  const {name, email} = req.user
+
+  res.send({ name, email})
+
+}
